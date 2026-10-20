@@ -50,12 +50,12 @@ public class FileService {
      * @param pokemonList La lista de Pokémon que se va a guardar.
      * @version 1.0
      */
-    public void saveToJson(String filename, List<Pokemon> pokemonList) {
-        checkValidFilename(filename);
+    public void saveToJson(List<Pokemon> pokemonList) {
+        checkValidFilename(this.FILE_NAME);
         checkValidPokemonList(pokemonList);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(Path.of(filename), pokemonList);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(Path.of(this.FILE_NAME), pokemonList);
         } catch (JacksonException exception) {
             throw new RuntimeException("Error writing JSON file", exception);
         }
