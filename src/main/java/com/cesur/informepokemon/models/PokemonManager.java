@@ -1,7 +1,9 @@
 package com.cesur.informepokemon.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PokemonManager {
     private List<Pokemon> pokemonList;
@@ -56,6 +58,14 @@ public class PokemonManager {
             }
         }
         return pokemonWithHigherHealthPoints;
+    }
+
+    public String getTypesOnPokemonList(List<Pokemon> pokemonList) {
+        Set<String> types = new HashSet<>();
+        for (Pokemon pokemon : pokemonList) {
+            types.add(pokemon.getType());
+        }
+        return String.join(", ", types);
     }
 
     public int getPokemonsByType(List<Pokemon> pokemonList, String pokemonType) {
