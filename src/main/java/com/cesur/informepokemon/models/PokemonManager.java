@@ -12,4 +12,8 @@ public class PokemonManager {
     public List<Pokemon> getPokemonList() { return pokemonList; }
 
     public void setPokemonList(List<Pokemon> pokemonList) { this.pokemonList = pokemonList; }
+
+    public int getTotalPokemonOnList() {
+        return pokemonList.size();
+    }
 }
