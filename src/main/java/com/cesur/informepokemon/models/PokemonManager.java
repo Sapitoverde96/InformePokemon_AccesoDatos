@@ -8,4 +8,8 @@ public class PokemonManager {
     public PokemonManager(List<Pokemon> pokemonList) {
         this.pokemonList = pokemonList;
     }
+
+    public List<Pokemon> getPokemonList() { return pokemonList; }
+
+    public void setPokemonList(List<Pokemon> pokemonList) { this.pokemonList = pokemonList; }
 }
