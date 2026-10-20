@@ -26,6 +26,12 @@ public class FileService {
         this.FILE_NAME = configService.getProperty("filename");
     }
 
+    /**
+     * Carga la lista de Pokémon desde un archivo JSON.
+     * @param filename El nombre del archivo desde el que se va a cargar.
+     * @return La lista de Pokémon cargada desde el archivo.
+     * @version 1.0
+     */
     public List<Pokemon> loadFromJson(String filename) {
         checkValidFilename(filename);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -38,6 +44,12 @@ public class FileService {
         }
     }
 
+    /**
+     * Guarda la lista de Pokémon en un archivo JSON.
+     * @param filename El nombre del archivo al que se va a guardar.
+     * @param pokemonList La lista de Pokémon que se va a guardar.
+     * @version 1.0
+     */
     public void saveToJson(String filename, List<Pokemon> pokemonList) {
         checkValidFilename(filename);
         checkValidPokemonList(pokemonList);
@@ -49,6 +61,12 @@ public class FileService {
         }
     }
 
+    /**
+     * Guarda la lista de Pokémon en un archivo TXT.
+     * @param filename El nombre del archivo al que se va a guardar.
+     * @param pokemonList La lista de Pokémon que se va a guardar.
+     * @version 1.0
+     */
     public void saveToText(String filename, List<Pokemon> pokemonList) {
         checkValidFilename(filename);
         checkValidPokemonList(pokemonList);
@@ -56,12 +74,22 @@ public class FileService {
     }
 
     // Métodos helper
+    /**
+     * Verifica que el nombre del archivo no sea nulo ni este vacío
+     * @param filename El nombre del archivo.
+     * @version 1.0
+     */
     private void checkValidFilename(String filename) {
         if (filename == null || filename.isEmpty()) {
             throw new IllegalArgumentException("Filename cannot be null or empty");
         }
     }
 
+    /**
+     * Verifica que la lista de Pokémon no sea nula ni esté vacía
+     * @param pokemonList La lista de Pokémon.
+     * @version 1.0
+     */
     private void checkValidPokemonList(List<Pokemon> pokemonList) {
         if (pokemonList == null || pokemonList.isEmpty()) {
             throw new IllegalArgumentException("Pokemon list cannot be null or empty");
