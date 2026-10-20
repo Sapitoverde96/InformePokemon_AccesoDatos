@@ -6,4 +6,5 @@ void main(String[] args) {
     ConfigService configService = new ConfigService();
     FileService fileService = new FileService(configService);
     var pokemonList = fileService.loadFromJson();
+    fileService.saveToText(pokemonList);
 }

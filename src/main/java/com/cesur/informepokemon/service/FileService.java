@@ -9,6 +9,7 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileService {
@@ -73,18 +74,32 @@ public class FileService {
         checkValidPokemonList(pokemonList);
         PokemonManager pkmManager = new PokemonManager(pokemonList);
         try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter(this.FILE_NAME_TXT))) {
-            bufWriter.write("--- POKEMON REPORT ---\n");
-            bufWriter.write("Total Pokemon: " + pkmManager.getTotalPokemonOnList(pokemonList) + "\n");
-            bufWriter.write("Average level: " + pkmManager.getAverageLevelOnList(pokemonList) + "\n");
-            bufWriter.write("Average health points: " + pkmManager.getAverageHealthPointsOnList(pokemonList) + "\n");
-            bufWriter.write("Highest level pokemon:\n" +
+            bufWriter.write("--- POKEMON REPORT ---");
+            bufWriter.newLine();
+            bufWriter.write("Total Pokemon: " + pkmManager.getTotalPokemonOnList(pokemonList));
+            bufWriter.newLine();
+            bufWriter.write("Average level: " + pkmManager.getAverageLevelOnList(pokemonList));
+            bufWriter.newLine();
+            bufWriter.write("Average health points: " + pkmManager.getAverageHealthPointsOnList(pokemonList));
+            bufWriter.newLine();
+            bufWriter.write("Highest level pokemon: \n" +
                     pkmManager.getPokemonHigherLevelOnList(pokemonList).getName() + "(LVL " +
-                    pkmManager.getPokemonHigherLevelOnList(pokemonList).getLevel() + ")\n");
-            bufWriter.write("Highest health points pokemon:\n" +
+                    pkmManager.getPokemonHigherLevelOnList(pokemonList).getLevel() + ")");
+            bufWriter.newLine();
+            bufWriter.write("Highest health points pokemon: \n" +
                     pkmManager.getPokemonHigherHealthPointsOnList(pokemonList).getName() + "(HP " +
-                    pkmManager.getPokemonHigherHealthPointsOnList(pokemonList).getHealthPoints() + ")\n");
-            bufWriter.write("POKEMON BY TYPE:\n");
-            // todo Hacer lo que queda de saveToText()
+                    pkmManager.getPokemonHigherHealthPointsOnList(pokemonList).getHealthPoints() + ")");
+            bufWriter.newLine();
+            bufWriter.write("POKEMON BY TYPE:");
+            bufWriter.newLine();
+            List<String> pokemonTypes = Arrays.asList(pkmManager.getTypesOnPokemonList(pokemonList).split(", "));
+            for (String pokemonType : pokemonTypes) {
+                bufWriter.write(pokemonType + ": " + pkmManager.getPokemonsByType(pokemonList, pokemonType) + "\n");
+                for (String pokemon : pkmManager.getPokemonsNamesByType(pokemonList, pokemonType)) {
+                    bufWriter.write("\t" + pokemon + "\n");
+                }
+                bufWriter.newLine();
+            }
         } catch (IOException exception) {
             throw new RuntimeException("Error writing text file", exception);
         }

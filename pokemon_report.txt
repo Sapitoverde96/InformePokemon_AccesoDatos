@@ -1,0 +1,49 @@
+--- POKEMON REPORT ---
+Total Pokemon: 20
+Average level: 20
+Average health points: 68
+Highest level pokemon: 
+Mewtwo(LVL 70)
+Highest health points pokemon: 
+Mewtwo(HP 248)
+POKEMON BY TYPE:
+Water: 3
+	Squirtle
+	Totodile
+	Mudkip
+
+Psychic: 2
+	Abra
+	Mewtwo
+
+Rock: 1
+	Tyranitar
+
+Fire: 3
+	Charmander
+	Cyndaquil
+	Torchic
+
+Electric: 1
+	Pikachu
+
+Poison: 2
+	Bulbasaur
+	Gastly
+
+Grass: 2
+	Chikorita
+	Treecko
+
+Normal: 4
+	Jigglypuff
+	Meowth
+	Eevee
+	Snorlax
+
+Steel: 1
+	Lucario
+
+Dragon: 1
+	Dragonite
+
