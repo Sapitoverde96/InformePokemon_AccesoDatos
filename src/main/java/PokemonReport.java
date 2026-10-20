@@ -1,4 +1,3 @@
-import com.cesur.informepokemon.models.Pokemon;
 import com.cesur.informepokemon.service.ConfigService;
 import com.cesur.informepokemon.service.FileService;
 
