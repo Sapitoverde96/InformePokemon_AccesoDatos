@@ -1,5 +1,6 @@
 package com.cesur.informepokemon.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonManager {
@@ -65,5 +66,15 @@ public class PokemonManager {
             }
         }
         return count;
+    }
+
+    public List<String> getPokemonsNamesByType(List<Pokemon> pokemonList, String pokemonType) {
+        List<String> pokemonNames = new ArrayList<>();
+        for (Pokemon pokemon : pokemonList) {
+            if (pokemon.getType().equals(pokemonType)) {
+                pokemonNames.add(pokemon.getName());
+            }
+        }
+        return pokemonNames;
     }
 }
