@@ -23,7 +23,7 @@ public class FileService {
      */
     public FileService(ConfigService configService) {
         this.CONFIG_SERVICE = configService;
-        this.FILE_NAME = configService.getProperty("filename");
+        this.FILE_NAME = this.CONFIG_SERVICE.getProperty("filename");
     }
 
     /**
@@ -32,13 +32,13 @@ public class FileService {
      * @return La lista de Pokémon cargada desde el archivo.
      * @version 1.0
      */
-    public List<Pokemon> loadFromJson(String filename) {
-        checkValidFilename(filename);
+    public List<Pokemon> loadFromJson() {
+        checkValidFilename(this.FILE_NAME);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new FileReader(filename), new TypeReference<List<Pokemon>>() {});
+            return objectMapper.readValue(new FileReader(this.FILE_NAME), new TypeReference<List<Pokemon>>() {});
         } catch (FileNotFoundException exception) {
-            throw new RuntimeException("File not found: " + filename, exception);
+            throw new RuntimeException("File not found: " + this.FILE_NAME, exception);
         } catch (JacksonException exception) {
             throw new RuntimeException("Error reading JSON file", exception);
         }
