@@ -42,4 +42,14 @@ public class PokemonManager {
         }
         return higherLevel;
     }
+
+    public int getPokemonHigherHealthPointsOnList(List<Pokemon> pokemonList) {
+        int higherHealthPoints = 0;
+        for (Pokemon pokemon : pokemonList) {
+            if (pokemon.getHealthPoints() > higherHealthPoints) {
+                higherHealthPoints = pokemon.getHealthPoints();
+            }
+        }
+        return higherHealthPoints;
+    }
 }
