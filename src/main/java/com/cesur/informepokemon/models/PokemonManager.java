@@ -13,7 +13,15 @@ public class PokemonManager {
 
     public void setPokemonList(List<Pokemon> pokemonList) { this.pokemonList = pokemonList; }
 
-    public int getTotalPokemonOnList() {
+    public int getTotalPokemonOnList(List<Pokemon> pokemonList) {
         return pokemonList.size();
+    }
+
+    public int getAverageLevelOnList(List<Pokemon> pokemonList) {
+        int totalLevel = 0;
+        for (Pokemon pokemon : pokemonList) {
+            totalLevel += pokemon.getLevel();
+        }
+        return totalLevel / pokemonList.size();
     }
 }
