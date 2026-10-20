@@ -1,5 +1,15 @@
 package com.cesur.informepokemon.service;
 
+import com.cesur.informepokemon.models.Pokemon;
+
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.List;
+
 public class FileService {
     private final String FILE_NAME;
     private final ConfigService CONFIG_SERVICE;
@@ -12,5 +22,19 @@ public class FileService {
     public FileService(ConfigService configService) {
         this.CONFIG_SERVICE = configService;
         this.FILE_NAME = configService.getProperty("filename");
+    }
+
+    public List<Pokemon> loadFromJson(String filename) {
+        if (filename == null || filename.isEmpty()) {
+            throw new IllegalArgumentException("Filename cannot be null or empty");
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(new FileReader(filename), new TypeReference<List<Pokemon>>() {});
+        } catch (FileNotFoundException exception) {
+            throw new RuntimeException("File not found: " + filename, exception);
+        } catch (JacksonException exception) {
+            throw new RuntimeException("Error reading JSON file", exception);
+        }
     }
 }
