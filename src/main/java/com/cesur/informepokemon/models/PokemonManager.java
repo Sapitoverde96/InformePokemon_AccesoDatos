@@ -24,4 +24,12 @@ public class PokemonManager {
         }
         return totalLevel / pokemonList.size();
     }
+
+    public int getAverageHealthPointsOnList(List<Pokemon> pokemonList) {
+        int totalHealthPoints = 0;
+        for (Pokemon pokemon : pokemonList) {
+            totalHealthPoints += pokemon.getHealthPoints();
+        }
+        return totalHealthPoints / pokemonList.size();
+    }
 }
