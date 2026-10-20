@@ -1,0 +1,11 @@
+package com.cesur.informepokemon.models;
+
+import java.util.List;
+
+public class PokemonManager {
+    private List<Pokemon> pokemonList;
+
+    public PokemonManager(List<Pokemon> pokemonList) {
+        this.pokemonList = pokemonList;
+    }
+}
