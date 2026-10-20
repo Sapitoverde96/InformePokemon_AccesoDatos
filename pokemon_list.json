@@ -1,0 +1,121 @@
+[ {
+  "healthPoints" : 20,
+  "id" : 1,
+  "level" : 5,
+  "name" : "Bulbasaur",
+  "type" : "Poison"
+}, {
+  "healthPoints" : 31,
+  "id" : 2,
+  "level" : 10,
+  "name" : "Charmander",
+  "type" : "Fire"
+}, {
+  "healthPoints" : 26,
+  "id" : 3,
+  "level" : 8,
+  "name" : "Squirtle",
+  "type" : "Water"
+}, {
+  "healthPoints" : 42,
+  "id" : 4,
+  "level" : 15,
+  "name" : "Pikachu",
+  "type" : "Electric"
+}, {
+  "healthPoints" : 55,
+  "id" : 5,
+  "level" : 12,
+  "name" : "Jigglypuff",
+  "type" : "Normal"
+}, {
+  "healthPoints" : 38,
+  "id" : 6,
+  "level" : 14,
+  "name" : "Meowth",
+  "type" : "Normal"
+}, {
+  "healthPoints" : 24,
+  "id" : 7,
+  "level" : 9,
+  "name" : "Abra",
+  "type" : "Psychic"
+}, {
+  "healthPoints" : 29,
+  "id" : 8,
+  "level" : 11,
+  "name" : "Gastly",
+  "type" : "Poison"
+}, {
+  "healthPoints" : 58,
+  "id" : 9,
+  "level" : 20,
+  "name" : "Eevee",
+  "type" : "Normal"
+}, {
+  "healthPoints" : 160,
+  "id" : 10,
+  "level" : 35,
+  "name" : "Snorlax",
+  "type" : "Normal"
+}, {
+  "healthPoints" : 182,
+  "id" : 11,
+  "level" : 55,
+  "name" : "Dragonite",
+  "type" : "Dragon"
+}, {
+  "healthPoints" : 248,
+  "id" : 12,
+  "level" : 70,
+  "name" : "Mewtwo",
+  "type" : "Psychic"
+}, {
+  "healthPoints" : 22,
+  "id" : 13,
+  "level" : 6,
+  "name" : "Chikorita",
+  "type" : "Grass"
+}, {
+  "healthPoints" : 24,
+  "id" : 14,
+  "level" : 7,
+  "name" : "Cyndaquil",
+  "type" : "Fire"
+}, {
+  "healthPoints" : 21,
+  "id" : 15,
+  "level" : 5,
+  "name" : "Totodile",
+  "type" : "Water"
+}, {
+  "healthPoints" : 190,
+  "id" : 16,
+  "level" : 55,
+  "name" : "Tyranitar",
+  "type" : "Rock"
+}, {
+  "healthPoints" : 25,
+  "id" : 17,
+  "level" : 8,
+  "name" : "Treecko",
+  "type" : "Grass"
+}, {
+  "healthPoints" : 27,
+  "id" : 18,
+  "level" : 9,
+  "name" : "Torchic",
+  "type" : "Fire"
+}, {
+  "healthPoints" : 32,
+  "id" : 19,
+  "level" : 10,
+  "name" : "Mudkip",
+  "type" : "Water"
+}, {
+  "healthPoints" : 118,
+  "id" : 20,
+  "level" : 40,
+  "name" : "Lucario",
+  "type" : "Steel"
+} ]
