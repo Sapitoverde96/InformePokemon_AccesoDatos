@@ -2,6 +2,7 @@ package com.cesur.informepokemon.service;
 
 import com.cesur.informepokemon.models.Pokemon;
 
+import com.cesur.informepokemon.models.PokemonManager;
 import tools.jackson.core.JacksonException;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
@@ -52,5 +53,15 @@ public class FileService {
         } catch (JacksonException exception) {
             throw new RuntimeException("Error writing JSON file", exception);
         }
+    }
+
+    public void saveToText(String filename, List<Pokemon> pokemonList) {
+        if (filename == null || filename.isEmpty()) {
+            throw new IllegalArgumentException("Filename cannot be null or empty");
+        }
+        if (pokemonList == null || pokemonList.isEmpty()) {
+            throw new IllegalArgumentException("Pokemon list cannot be null or empty");
+        }
+        // todo hacer método saveToText
     }
 }
