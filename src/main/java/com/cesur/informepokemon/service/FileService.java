@@ -27,9 +27,7 @@ public class FileService {
     }
 
     public List<Pokemon> loadFromJson(String filename) {
-        if (filename == null || filename.isEmpty()) {
-            throw new IllegalArgumentException("Filename cannot be null or empty");
-        }
+        checkValidFilename(filename);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(new FileReader(filename), new TypeReference<List<Pokemon>>() {});
@@ -41,12 +39,8 @@ public class FileService {
     }
 
     public void saveToJson(String filename, List<Pokemon> pokemonList) {
-        if (filename == null || filename.isEmpty()) {
-            throw new IllegalArgumentException("Filename cannot be null or empty");
-        }
-        if (pokemonList == null || pokemonList.isEmpty()) {
-            throw new IllegalArgumentException("Pokemon list cannot be null or empty");
-        }
+        checkValidFilename(filename);
+        checkValidPokemonList(pokemonList);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(Path.of(filename), pokemonList);
@@ -56,12 +50,21 @@ public class FileService {
     }
 
     public void saveToText(String filename, List<Pokemon> pokemonList) {
+        checkValidFilename(filename);
+        checkValidPokemonList(pokemonList);
+        // todo hacer método saveToText
+    }
+
+    // Métodos helper
+    private void checkValidFilename(String filename) {
         if (filename == null || filename.isEmpty()) {
             throw new IllegalArgumentException("Filename cannot be null or empty");
         }
+    }
+
+    private void checkValidPokemonList(List<Pokemon> pokemonList) {
         if (pokemonList == null || pokemonList.isEmpty()) {
             throw new IllegalArgumentException("Pokemon list cannot be null or empty");
         }
-        // todo hacer método saveToText
     }
 }
