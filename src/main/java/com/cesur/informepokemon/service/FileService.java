@@ -7,13 +7,13 @@ import tools.jackson.core.JacksonException;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.List;
 
 public class FileService {
-    private final String FILE_NAME;
+    private final String FILE_NAME_JSON;
+    private final String FILE_NAME_TXT;
     private final ConfigService CONFIG_SERVICE;
 
     /**
@@ -23,7 +23,8 @@ public class FileService {
      */
     public FileService(ConfigService configService) {
         this.CONFIG_SERVICE = configService;
-        this.FILE_NAME = this.CONFIG_SERVICE.getProperty("filename");
+        this.FILE_NAME_JSON = this.CONFIG_SERVICE.getProperty("filename");
+        this.FILE_NAME_TXT = this.CONFIG_SERVICE.getProperty("report");
     }
 
     /**
@@ -33,12 +34,12 @@ public class FileService {
      * @version 1.0
      */
     public List<Pokemon> loadFromJson() {
-        checkValidFilename(this.FILE_NAME);
+        checkValidFilename(this.FILE_NAME_JSON);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(new FileReader(this.FILE_NAME), new TypeReference<List<Pokemon>>() {});
+            return objectMapper.readValue(new FileReader(this.FILE_NAME_JSON), new TypeReference<List<Pokemon>>() {});
         } catch (FileNotFoundException exception) {
-            throw new RuntimeException("File not found: " + this.FILE_NAME, exception);
+            throw new RuntimeException("File not found: " + this.FILE_NAME_JSON, exception);
         } catch (JacksonException exception) {
             throw new RuntimeException("Error reading JSON file", exception);
         }
@@ -51,11 +52,11 @@ public class FileService {
      * @version 1.0
      */
     public void saveToJson(List<Pokemon> pokemonList) {
-        checkValidFilename(this.FILE_NAME);
+        checkValidFilename(this.FILE_NAME_JSON);
         checkValidPokemonList(pokemonList);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(Path.of(this.FILE_NAME), pokemonList);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(Path.of(this.FILE_NAME_JSON), pokemonList);
         } catch (JacksonException exception) {
             throw new RuntimeException("Error writing JSON file", exception);
         }
@@ -67,10 +68,26 @@ public class FileService {
      * @param pokemonList La lista de Pokémon que se va a guardar.
      * @version 1.0
      */
-    public void saveToText(String filename, List<Pokemon> pokemonList) {
-        checkValidFilename(filename);
+    public void saveToText(List<Pokemon> pokemonList) {
+        checkValidFilename(this.FILE_NAME_TXT);
         checkValidPokemonList(pokemonList);
-        // todo hacer método saveToText
+        PokemonManager pkmManager = new PokemonManager(pokemonList);
+        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter(this.FILE_NAME_TXT))) {
+            bufWriter.write("--- POKEMON REPORT ---\n");
+            bufWriter.write("Total Pokemon: " + pkmManager.getTotalPokemonOnList(pokemonList) + "\n");
+            bufWriter.write("Average level: " + pkmManager.getAverageLevelOnList(pokemonList) + "\n");
+            bufWriter.write("Average health points: " + pkmManager.getAverageHealthPointsOnList(pokemonList) + "\n");
+            bufWriter.write("Highest level pokemon:\n" +
+                    pkmManager.getPokemonHigherLevelOnList(pokemonList).getName() + "(LVL " +
+                    pkmManager.getPokemonHigherLevelOnList(pokemonList).getLevel() + ")\n");
+            bufWriter.write("Highest health points pokemon:\n" +
+                    pkmManager.getPokemonHigherHealthPointsOnList(pokemonList).getName() + "(HP " +
+                    pkmManager.getPokemonHigherHealthPointsOnList(pokemonList).getHealthPoints() + ")\n");
+            bufWriter.write("POKEMON BY TYPE:\n");
+            // todo Hacer lo que queda de saveToText()
+        } catch (IOException exception) {
+            throw new RuntimeException("Error writing text file", exception);
+        }
     }
 
     // Métodos helper
