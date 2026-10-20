@@ -56,4 +56,14 @@ public class PokemonManager {
         }
         return pokemonWithHigherHealthPoints;
     }
+
+    public int getPokemonsByType(List<Pokemon> pokemonList, String pokemonType) {
+        int count = 0;
+        for (Pokemon pokemon : pokemonList) {
+            if (pokemon.getType().equals(pokemonType)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
