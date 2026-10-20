@@ -33,23 +33,27 @@ public class PokemonManager {
         return totalHealthPoints / pokemonList.size();
     }
 
-    public int getPokemonHigherLevelOnList(List<Pokemon> pokemonList) {
+    public Pokemon getPokemonHigherLevelOnList(List<Pokemon> pokemonList) {
         int higherLevel = 0;
+        Pokemon pokemonWithHigherLevel = null;
         for (Pokemon pokemon : pokemonList) {
             if (pokemon.getLevel() > higherLevel) {
                 higherLevel = pokemon.getLevel();
+                pokemonWithHigherLevel = pokemon;
             }
         }
-        return higherLevel;
+        return pokemonWithHigherLevel;
     }
 
-    public int getPokemonHigherHealthPointsOnList(List<Pokemon> pokemonList) {
+    public Pokemon getPokemonHigherHealthPointsOnList(List<Pokemon> pokemonList) {
         int higherHealthPoints = 0;
+        Pokemon pokemonWithHigherHealthPoints = null;
         for (Pokemon pokemon : pokemonList) {
             if (pokemon.getHealthPoints() > higherHealthPoints) {
                 higherHealthPoints = pokemon.getHealthPoints();
+                pokemonWithHigherHealthPoints = pokemon;
             }
         }
-        return higherHealthPoints;
+        return pokemonWithHigherHealthPoints;
     }
 }
